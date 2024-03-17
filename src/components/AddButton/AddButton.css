@@ -1,0 +1,36 @@
+.add-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: 0.32px;
+
+    color: var(--Primary-400);
+}
+
+.add-button.added {
+    color: var(--Success-400);
+}
+
+.add-button svg {
+    width: 24px;
+    height: 24px;
+}
+
+.add-button:hover,
+.add-button:focus {
+    opacity: 0.8;
+}
+
+.add-button:active {
+    opacity: 0.6;
+}

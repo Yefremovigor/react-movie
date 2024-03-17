@@ -26,6 +26,14 @@
   --Grey-50: #EBEEF5;
 
   --Black-10: rgba(0, 0, 0, 0.10);
+  --Black-65: rgba(0, 0, 0, 0.65);
+
+  --Warning-500: #FFAD49;
+
+  --Card-background: rgba(32, 40, 62, 0.80);
+  --Card-filter: blur(40px);
+
+  --Success-400: #37D8A7;
 
 
 
@@ -61,4 +69,8 @@ body {
   clip-path: inset(100%);
   clip: rect(0 0 0 0);
   overflow: hidden;
+}
+
+.mb-80 {
+  margin-bottom: 80px;
 }
