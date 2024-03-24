@@ -1,4 +1,3 @@
-import './App.css';
 import Button from "./components/Button/Button.jsx";
 import H1 from "./components/H1/H1.jsx";
 import P from "./components/P/P.jsx";
@@ -8,7 +7,7 @@ import Form from "./components/Form/Form.jsx";
 import Main from "./layouts/Main/Main.jsx";
 import HeadingBlock from "./components/HeadingBlock/HeadingBlock.jsx";
 import FilmList from "./components/FilmList/FilmList.jsx";
-import {useState} from "react";
+import { useState } from "react";
 
 const INITIAL_FILMS_DATA = [
     {
@@ -78,7 +77,7 @@ function App() {
     const [films, setFilms] = useState(INITIAL_FILMS_DATA);
 
     const addToFavorite = (id) => {
-        setFilms(films.map(film => film.id === id ? {...film, ifFavorite: !film.ifFavorite} : film));
+        setFilms(films.map(film => film.id === id ? { ...film, ifFavorite: !film.ifFavorite } : film));
     };
 
     return (
@@ -92,11 +91,11 @@ function App() {
                     </P>
                 </HeadingBlock>
                 <Form type="search" className="mb-80">
-                    <Input type="search" label={{hidden: true, text: "Поиск"}} placeholder="Введите название"
+                    <Input type="search" label={{ hidden: true, text: "Поиск" }} placeholder="Введите название"
                            icon="./images/icons/icon-search.svg" />
                     <Button onClick={clickHandler}>Искать</Button>
                 </Form>
-                <FilmList films={films} handler={addToFavorite}/>
+                <FilmList films={films} handler={addToFavorite} />
             </Main>
         </>
     );
