@@ -1,0 +1,76 @@
+:root {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+
+  /* colors */
+  --White-100: #FFFFFF;
+
+  --Primary-900: #120F31;
+  --Primary-800: #251E62;
+  --Primary-700: #362C92;
+  --Primary-600: #483BC3;
+  --Primary-500: #5A4AF4;
+  --Primary-400: #7B6EF6;
+  --Primary-300: #9C92F8;
+  --Primary-200: #BEB7FB;
+  --Primary-100: #DEDBFD;
+  --Primary-50: #EBE9FE;
+
+  --Grey-900: #121829;
+  --Grey-700: #323B54;
+  --Grey-600: #475069;
+  --Grey-300: #8E95A9;
+  --Grey-200: #A8AEBF;
+  --Grey-50: #EBEEF5;
+
+  --Black-10: rgba(0, 0, 0, 0.10);
+  --Black-65: rgba(0, 0, 0, 0.65);
+
+  --Warning-500: #FFAD49;
+
+  --Card-background: rgba(32, 40, 62, 0.80);
+  --Card-filter: blur(40px);
+
+  --Success-400: #37D8A7;
+
+
+
+  color: var(--Grey-300);
+  background-color: var(--Grey-900);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  min-width: 320px;
+  min-height: 100vh;
+
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.mb-80 {
+  margin-bottom: 80px;
+}

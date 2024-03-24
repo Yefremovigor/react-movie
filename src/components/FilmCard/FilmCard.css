@@ -1,0 +1,68 @@
+.film-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+
+    padding: 8px 8px 16px 8px;
+    width: 282px;
+
+    border-radius: 12px;
+    background: var(--Card-background);
+    backdrop-filter: var(--Card-filter);
+}
+
+.film-card__img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.film-card__rating {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+
+    display: inline-flex;
+    padding: 4px 8px;
+    align-items: center;
+    gap: 4px;
+
+    min-height: 32px;
+
+    border-radius: 8px;
+    background: var(--Black-65);
+    backdrop-filter: blur(4px);
+
+    color: var(--Warning-500);
+
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+}
+
+.film-card__rating-value {
+    padding-top: 2px;
+}
+
+.film-card__bottom {
+    display: flex;
+    padding: 8px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.film-card__name {
+    color: var(--Grey-50);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: 0.32px;
+}
+
+.film-card__add-button {
+
+}
