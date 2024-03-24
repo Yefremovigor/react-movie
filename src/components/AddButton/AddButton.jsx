@@ -1,10 +1,10 @@
-import './AddButton.css'
+import styles from './AddButton.module.css';
 
 const AddButton = ({onClick, state}) => {
 
     const buttonText = state ? 'В избранном' : 'В избранное';
     const buttonIcon = state ? './images/icons/favorites-icon.svg' : './images/icons/like-icon.svg';
-    const buttonClass = state ? 'add-button added' : 'add-button';
+    const buttonClass = state ? `${styles['add-button']} ${styles.added}` : styles['add-button'];
 
     return (
         <button className={buttonClass} onClick={onClick}>

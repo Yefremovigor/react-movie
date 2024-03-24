@@ -1,8 +1,8 @@
-import './HeadingBlock.css';
+import styles from './HeadingBlock.module.css';
 
 const HeadingBlock = ({children}) => {
   return (
-    <div className="heading-block">
+    <div className={styles.headingBlock}>
         {children}
     </div>
   );
