@@ -1,6 +1,7 @@
 import styles from './Input.module.css';
+import { forwardRef } from 'react';
 
-const Input = ({type, label, placeholder, icon}) => {
+const Input = forwardRef(({type, label, placeholder, icon, name, ...props}, ref) => {
     const inputType = type || 'text';
     const inputClass = `${styles['input']} ${styles[`input--${inputType}`]}`;
     const labelTextClass = label.hidden ? `${styles['input__label-text']} visually-hidden` : styles['input__label-text'];
@@ -10,12 +11,12 @@ const Input = ({type, label, placeholder, icon}) => {
     const inputIcon = icon ? <img className={styles['input__icon']} src={icon} alt="Иконка" aria-hidden="true" /> : '';
 
     return (
-        <label className={styles['input__label']}>
+        <label {...props} ref={ref} className={styles['input__label']}>
             {inputIcon}
-            <input className={inputClass} type={type} placeholder={inputPlaceholder} />
+            <input className={inputClass} type={type} name={name} placeholder={inputPlaceholder} />
             <span className={labelTextClass}>{labelText}</span>
         </label>
     );
-}
+});
 
 export default Input;

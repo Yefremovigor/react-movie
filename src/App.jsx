@@ -7,7 +7,8 @@ import Form from "./components/Form/Form.jsx";
 import Main from "./layouts/Main/Main.jsx";
 import HeadingBlock from "./components/HeadingBlock/HeadingBlock.jsx";
 import FilmList from "./components/FilmList/FilmList.jsx";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useLocalStorage } from "./hooks/useLocalStorage.hook.js";
 
 const INITIAL_FILMS_DATA = [
     {
@@ -70,32 +71,97 @@ const INITIAL_FILMS_DATA = [
 
 function App() {
 
-    const clickHandler = (event) => {
-        console.log(event);
-    };
-
     const [films, setFilms] = useState(INITIAL_FILMS_DATA);
+
+    const searchInputRef = useRef();
+    const searchButtonRef = useRef();
+    const loginInputRef = useRef();
+    const loginButtonRef = useRef();
+
+    const [users, saveUsers] = useLocalStorage('users');
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        if (!users) {
+            return;
+        }
+
+        const foundUser = users?.find(user => user.isLogined === true);
+        setUser(foundUser);
+    }, [users]);
+
 
     const addToFavorite = (id) => {
         setFilms(films.map(film => film.id === id ? { ...film, ifFavorite: !film.ifFavorite } : film));
     };
+    function logOutHandler(event) {
+        event.preventDefault();
+        if (!users) {
+            return;
+        }
+
+        setUser(null);
+        saveUsers(...users.map(user => user.isLogined = false));
+    }
+
+    function loginHandler(event) {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const userLogin = formData.get('login');
+
+        if (!userLogin) {
+            return;
+        }
+
+        if (!users) {
+            saveUsers([{ name: userLogin, isLogined: true }]);
+            return;
+        }
+
+        const currentUser = users?.find(user => user.name === userLogin);
+        if (currentUser) {
+            saveUsers(...users.map(user => user.name === currentUser.name ? { ...user, isLogined: true } : user));
+        } else {
+            saveUsers([...users, { name: userLogin, isLogined: true }]);
+        }
+    }
+
 
     return (
         <>
-            <NavBar />
+            <NavBar userName={user?.name ? user.name : null} logOutHandler={logOutHandler} />
             <Main>
-                <HeadingBlock>
-                    <H1>Поиск</H1>
-                    <P>
-                        Введите название фильма, сериала или мультфильма для поиска и добавления в избранное.
-                    </P>
-                </HeadingBlock>
-                <Form type="search" className="mb-80">
-                    <Input type="search" label={{ hidden: true, text: "Поиск" }} placeholder="Введите название"
-                           icon="./images/icons/icon-search.svg" />
-                    <Button onClick={clickHandler}>Искать</Button>
-                </Form>
-                <FilmList films={films} handler={addToFavorite} />
+                {!user ?
+                    <>
+                        <HeadingBlock>
+                            <H1>Вход</H1>
+
+                        </HeadingBlock>
+                        <Form type="login" onSubmit={loginHandler} className="mb-80">
+                            <Input ref={loginInputRef} name="login" label={{ hidden: true, text: "Имя" }}
+                                   placeholder="Ваше имя" key="login" />
+                            <Button type="submit" ref={loginButtonRef}>Войти в профиль</Button>
+                        </Form>
+                    </> :
+                    <>
+                        <HeadingBlock>
+                            <H1>Поиск</H1>
+                            <P>
+                                Введите название фильма, сериала или мультфильма для поиска и добавления в избранное.
+                            </P>
+                        </HeadingBlock>
+                        <Form type="search" className="mb-80">
+                            <Input type="search" ref={searchInputRef} label={{ hidden: true, text: "Поиск" }}
+                                   name="query"
+                                   placeholder="Введите название"
+                                   icon="./images/icons/icon-search.svg"
+                                   key="search" />
+                            <Button type="submit" ref={searchButtonRef}>Искать</Button>
+                        </Form>
+
+                        <FilmList films={films} handler={addToFavorite} />
+                    </>
+                }
             </Main>
         </>
     );
