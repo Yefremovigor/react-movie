@@ -1,6 +1,9 @@
 import styles from './Nav.module.css';
+import { useContext } from "react";
+import { UserContext } from "../../context/user.context.jsx";
 
-const Nav = ({ userName, logOutHandler }) => {
+const Nav = () => {
+    const {user, logOutHandler} = useContext(UserContext)
     return (
         <>
             <nav className={styles.nav}>
@@ -12,11 +15,11 @@ const Nav = ({ userName, logOutHandler }) => {
                         <a className={styles.nav__link} href="/my">Мои фильмы <span
                             className={styles.nav__counter}>2</span></a>
                     </li>
-                    {userName ? (
+                    {user ? (
                             <>
                                 <li>
                                     <a className={styles.nav__link} href="/user">
-                                        {userName}
+                                        {user.name}
                                         <img src="./images/icons/user-icon.svg" alt="Иконка иконка пользователя" />
                                     </a>
                                 </li>

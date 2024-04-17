@@ -9,65 +9,25 @@ import HeadingBlock from "./components/HeadingBlock/HeadingBlock.jsx";
 import FilmList from "./components/FilmList/FilmList.jsx";
 import { useEffect, useRef, useState } from "react";
 import { useLocalStorage } from "./hooks/useLocalStorage.hook.js";
+import { UserContext, UserContextProvider } from "./context/user.context.jsx";
 
-const INITIAL_FILMS_DATA = [
-    {
-        id: 1,
-        name: 'Black Widow',
-        img: '/images/film-posters/black-widow.jpg',
-        ifFavorite: false,
-        rating: 324
-    },
-    {
-        id: 2,
-        name: 'Shang Chi',
-        img: '/images/film-posters/black-widow.jpg',
-        ifFavorite: false,
-        rating: 124
-    },
-    {
-        id: 3,
-        name: 'Loki',
-        img: '/images/film-posters/black-widow.jpg',
-        ifFavorite: false,
-        rating: 235
-    },
-    {
-        id: 4,
-        name: 'How I Met Your Mother',
-        img: '/images/film-posters/black-widow.jpg',
-        ifFavorite: false,
-        rating: 123
-    },
-    {
-        id: 5,
-        name: 'Money Heist',
-        img: '/images/film-posters/black-widow.jpg',
-        ifFavorite: true,
-        rating: 8125
-    },
-    {
-        id: 6,
-        name: 'Friends',
-        img: '/images/film-posters/black-widow.jpg',
-        ifFavorite: false,
-        rating: 123
-    },
-    {
-        id: 7,
-        name: 'The Big Bang Theory',
-        img: '/images/film-posters/black-widow.jpg',
-        ifFavorite: false,
-        rating: 12
-    },
-    {
-        id: 8,
-        name: 'Two And a Half Men',
-        img: '/images/film-posters/black-widow.jpg',
-        ifFavorite: false,
-        rating: 456
-    }
-];
+const INITIAL_FILMS_DATA = [{
+    id: 1, name: 'Black Widow', img: '/images/film-posters/black-widow.jpg', ifFavorite: false, rating: 324
+}, {
+    id: 2, name: 'Shang Chi', img: '/images/film-posters/black-widow.jpg', ifFavorite: false, rating: 124
+}, {
+    id: 3, name: 'Loki', img: '/images/film-posters/black-widow.jpg', ifFavorite: false, rating: 235
+}, {
+    id: 4, name: 'How I Met Your Mother', img: '/images/film-posters/black-widow.jpg', ifFavorite: false, rating: 123
+}, {
+    id: 5, name: 'Money Heist', img: '/images/film-posters/black-widow.jpg', ifFavorite: true, rating: 8125
+}, {
+    id: 6, name: 'Friends', img: '/images/film-posters/black-widow.jpg', ifFavorite: false, rating: 123
+}, {
+    id: 7, name: 'The Big Bang Theory', img: '/images/film-posters/black-widow.jpg', ifFavorite: false, rating: 12
+}, {
+    id: 8, name: 'Two And a Half Men', img: '/images/film-posters/black-widow.jpg', ifFavorite: false, rating: 456
+}];
 
 function App() {
 
@@ -94,6 +54,7 @@ function App() {
     const addToFavorite = (id) => {
         setFilms(films.map(film => film.id === id ? { ...film, ifFavorite: !film.ifFavorite } : film));
     };
+
     function logOutHandler(event) {
         event.preventDefault();
         if (!users) {
@@ -129,42 +90,40 @@ function App() {
 
     return (
         <>
-            <NavBar userName={user?.name ? user.name : null} logOutHandler={logOutHandler} />
+            <UserContext.Provider value={{ user, logOutHandler }}>
+            <NavBar />
             <Main>
-                {!user ?
-                    <>
-                        <HeadingBlock>
-                            <H1>Вход</H1>
+                {!user ? <>
+                    <HeadingBlock>
+                        <H1>Вход</H1>
 
-                        </HeadingBlock>
-                        <Form type="login" onSubmit={loginHandler} className="mb-80">
-                            <Input ref={loginInputRef} name="login" label={{ hidden: true, text: "Имя" }}
-                                   placeholder="Ваше имя" key="login" />
-                            <Button type="submit" ref={loginButtonRef}>Войти в профиль</Button>
-                        </Form>
-                    </> :
-                    <>
-                        <HeadingBlock>
-                            <H1>Поиск</H1>
-                            <P>
-                                Введите название фильма, сериала или мультфильма для поиска и добавления в избранное.
-                            </P>
-                        </HeadingBlock>
-                        <Form type="search" className="mb-80">
-                            <Input type="search" ref={searchInputRef} label={{ hidden: true, text: "Поиск" }}
-                                   name="query"
-                                   placeholder="Введите название"
-                                   icon="./images/icons/icon-search.svg"
-                                   key="search" />
-                            <Button type="submit" ref={searchButtonRef}>Искать</Button>
-                        </Form>
+                    </HeadingBlock>
+                    <Form type="login" onSubmit={loginHandler} className="mb-80">
+                        <Input ref={loginInputRef} name="login" label={{ hidden: true, text: "Имя" }}
+                               placeholder="Ваше имя" key="login" />
+                        <Button type="submit" ref={loginButtonRef}>Войти в профиль</Button>
+                    </Form>
+                </> : <>
+                    <HeadingBlock>
+                        <H1>Поиск</H1>
+                        <P>
+                            Введите название фильма, сериала или мультфильма для поиска и добавления в избранное.
+                        </P>
+                    </HeadingBlock>
+                    <Form type="search" className="mb-80">
+                        <Input type="search" ref={searchInputRef} label={{ hidden: true, text: "Поиск" }}
+                               name="query"
+                               placeholder="Введите название"
+                               icon="./images/icons/icon-search.svg"
+                               key="search" />
+                        <Button type="submit" ref={searchButtonRef}>Искать</Button>
+                    </Form>
 
-                        <FilmList films={films} handler={addToFavorite} />
-                    </>
-                }
+                    <FilmList films={films} handler={addToFavorite} />
+                </>}
             </Main>
-        </>
-    );
+        </UserContext.Provider>
+        </>);
 }
 
 export default App;
