@@ -1,5 +1,5 @@
-import styles from './Input.module.css';
 import { forwardRef } from 'react';
+import styles from './Input.module.css';
 
 const Input = forwardRef(({type, label, placeholder, icon, name, ...props}, ref) => {
     const inputType = type || 'text';

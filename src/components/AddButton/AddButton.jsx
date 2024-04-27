@@ -11,6 +11,6 @@ const AddButton = ({onClick, state}) => {
             <img src={buttonIcon} alt={buttonText} /> {buttonText}
         </button>
     );
-}
+};
 
 export default AddButton;

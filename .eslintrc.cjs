@@ -20,6 +20,13 @@ module.exports = {
     'comma-dangle': ['error', 'never'],
     'quotes': ['error', 'single'],
     'react/prop-types': [0],
-    'indent': ['error', 4]
+    'indent': ['error', 4],
+    "sort-imports": ["error", {
+      "ignoreCase": false,
+      "ignoreDeclarationSort": false,
+      "ignoreMemberSort": false,
+      "memberSyntaxSortOrder": ["none", "all", "multiple", "single"],
+      "allowSeparatedGroups": false
+    }],
   },
 }

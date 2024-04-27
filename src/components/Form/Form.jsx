@@ -7,6 +7,6 @@ const Form = ({ children, onSubmit, type, className}) => {
             {children}
         </form>
     );
-}
+};
 
 export default Form;

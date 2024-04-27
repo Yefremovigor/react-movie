@@ -1,9 +1,9 @@
+import { useContext } from 'react';
+import { UserContext } from '../../context/user.context.jsx';
 import styles from './Nav.module.css';
-import { useContext } from "react";
-import { UserContext } from "../../context/user.context.jsx";
 
 const Nav = () => {
-    const {user, logOutHandler} = useContext(UserContext)
+    const {user, logoutHandler} = useContext(UserContext);
     return (
         <>
             <nav className={styles.nav}>
@@ -16,18 +16,18 @@ const Nav = () => {
                             className={styles.nav__counter}>2</span></a>
                     </li>
                     {user ? (
-                            <>
-                                <li>
-                                    <a className={styles.nav__link} href="/user">
-                                        {user.name}
-                                        <img src="./images/icons/user-icon.svg" alt="Иконка иконка пользователя" />
-                                    </a>
-                                </li>
-                                <li>
-                                    <a className={styles.nav__link} href="/logout" onClick={logOutHandler}>Выйти</a>
-                                </li>
-                            </>
-                        )
+                        <>
+                            <li>
+                                <a className={styles.nav__link} href="/user">
+                                    {user.name}
+                                    <img src="./images/icons/user-icon.svg" alt="Иконка иконка пользователя" />
+                                </a>
+                            </li>
+                            <li>
+                                <a className={styles.nav__link} href="/logout" onClick={logoutHandler}>Выйти</a>
+                            </li>
+                        </>
+                    )
                         : (
                             <li>
                                 <a className={styles.nav__link} href="/login">
@@ -41,6 +41,6 @@ const Nav = () => {
             </nav>
         </>
     );
-}
+};
 
 export default Nav;

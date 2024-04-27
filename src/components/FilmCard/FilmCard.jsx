@@ -1,10 +1,10 @@
-import styles from './FilmCard.module.css'
-import AddButton from "../AddButton/AddButton.jsx";
+import AddButton from '../AddButton/AddButton.jsx';
+import styles from './FilmCard.module.css';
 
 const FilmCard = ({ film, addToFavoriteHandler }) => {
     const clickHandler = () => {
         addToFavoriteHandler(film.id);
-    }
+    };
     return (<div className={styles['film-card']}>
         <img className={styles['film-card__img']} src={film.img} alt={film.name} />
         <div className={styles['film-card__rating']}>
@@ -16,6 +16,6 @@ const FilmCard = ({ film, addToFavoriteHandler }) => {
             <AddButton state={film.ifFavorite} onClick={clickHandler} />
         </div>
     </div>);
-}
+};
 
 export default FilmCard;

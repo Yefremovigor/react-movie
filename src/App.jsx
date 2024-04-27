@@ -1,15 +1,15 @@
-import Button from "./components/Button/Button.jsx";
-import H1 from "./components/H1/H1.jsx";
-import P from "./components/P/P.jsx";
-import NavBar from "./layouts/NavBar/NavBar.jsx";
-import Input from "./components/Input/Input.jsx";
-import Form from "./components/Form/Form.jsx";
-import Main from "./layouts/Main/Main.jsx";
-import HeadingBlock from "./components/HeadingBlock/HeadingBlock.jsx";
-import FilmList from "./components/FilmList/FilmList.jsx";
-import { useEffect, useRef, useState } from "react";
-import { useLocalStorage } from "./hooks/useLocalStorage.hook.js";
-import { UserContext, UserContextProvider } from "./context/user.context.jsx";
+import Button from './components/Button/Button.jsx';
+import H1 from './components/H1/H1.jsx';
+import P from './components/P/P.jsx';
+import NavBar from './layouts/NavBar/NavBar.jsx';
+import Input from './components/Input/Input.jsx';
+import Form from './components/Form/Form.jsx';
+import Main from './layouts/Main/Main.jsx';
+import HeadingBlock from './components/HeadingBlock/HeadingBlock.jsx';
+import FilmList from './components/FilmList/FilmList.jsx';
+import { useRef, useState } from 'react';
+import { UserContext } from './context/user.context.jsx';
+import { useUserAuth } from './hooks/useUserAuth.hook';
 
 const INITIAL_FILMS_DATA = [{
     id: 1, name: 'Black Widow', img: '/images/film-posters/black-widow.jpg', ifFavorite: false, rating: 324
@@ -38,31 +38,16 @@ function App() {
     const loginInputRef = useRef();
     const loginButtonRef = useRef();
 
-    const [users, saveUsers] = useLocalStorage('users');
-    const [user, setUser] = useState(null);
-
-    useEffect(() => {
-        if (!users) {
-            return;
-        }
-
-        const foundUser = users?.find(user => user.isLogined === true);
-        setUser(foundUser);
-    }, [users]);
+    const { user, login, logout } = useUserAuth();
 
 
     const addToFavorite = (id) => {
         setFilms(films.map(film => film.id === id ? { ...film, ifFavorite: !film.ifFavorite } : film));
     };
 
-    function logOutHandler(event) {
+    function logoutHandler(event) {
         event.preventDefault();
-        if (!users) {
-            return;
-        }
-
-        setUser(null);
-        saveUsers(...users.map(user => user.isLogined = false));
+        logout();
     }
 
     function loginHandler(event) {
@@ -70,59 +55,47 @@ function App() {
         const formData = new FormData(event.target);
         const userLogin = formData.get('login');
 
-        if (!userLogin) {
-            return;
-        }
-
-        if (!users) {
-            saveUsers([{ name: userLogin, isLogined: true }]);
-            return;
-        }
-
-        const currentUser = users?.find(user => user.name === userLogin);
-        if (currentUser) {
-            saveUsers(...users.map(user => user.name === currentUser.name ? { ...user, isLogined: true } : user));
-        } else {
-            saveUsers([...users, { name: userLogin, isLogined: true }]);
+        if (userLogin) {
+            login(userLogin);
         }
     }
 
 
     return (
         <>
-            <UserContext.Provider value={{ user, logOutHandler }}>
-            <NavBar />
-            <Main>
-                {!user ? <>
-                    <HeadingBlock>
-                        <H1>Вход</H1>
+            <UserContext.Provider value={{ user, logoutHandler }}>
+                <NavBar />
+                <Main>
+                    {!user ? <>
+                        <HeadingBlock>
+                            <H1>Вход</H1>
 
-                    </HeadingBlock>
-                    <Form type="login" onSubmit={loginHandler} className="mb-80">
-                        <Input ref={loginInputRef} name="login" label={{ hidden: true, text: "Имя" }}
-                               placeholder="Ваше имя" key="login" />
-                        <Button type="submit" ref={loginButtonRef}>Войти в профиль</Button>
-                    </Form>
-                </> : <>
-                    <HeadingBlock>
-                        <H1>Поиск</H1>
-                        <P>
-                            Введите название фильма, сериала или мультфильма для поиска и добавления в избранное.
-                        </P>
-                    </HeadingBlock>
-                    <Form type="search" className="mb-80">
-                        <Input type="search" ref={searchInputRef} label={{ hidden: true, text: "Поиск" }}
-                               name="query"
-                               placeholder="Введите название"
-                               icon="./images/icons/icon-search.svg"
-                               key="search" />
-                        <Button type="submit" ref={searchButtonRef}>Искать</Button>
-                    </Form>
+                        </HeadingBlock>
+                        <Form type="login" onSubmit={loginHandler} className="mb-80">
+                            <Input ref={loginInputRef} name="login" label={{ hidden: true, text: 'Имя' }}
+                                placeholder="Ваше имя" key="login" />
+                            <Button type="submit" ref={loginButtonRef}>Войти в профиль</Button>
+                        </Form>
+                    </> : <>
+                        <HeadingBlock>
+                            <H1>Поиск</H1>
+                            <P>
+                                Введите название фильма, сериала или мультфильма для поиска и добавления в избранное.
+                            </P>
+                        </HeadingBlock>
+                        <Form type="search" className="mb-80">
+                            <Input type="search" ref={searchInputRef} label={{ hidden: true, text: 'Поиск' }}
+                                name="query"
+                                placeholder="Введите название"
+                                icon="./images/icons/icon-search.svg"
+                                key="search" />
+                            <Button type="submit" ref={searchButtonRef}>Искать</Button>
+                        </Form>
 
-                    <FilmList films={films} handler={addToFavorite} />
-                </>}
-            </Main>
-        </UserContext.Provider>
+                        <FilmList films={films} handler={addToFavorite} />
+                    </>}
+                </Main>
+            </UserContext.Provider>
         </>);
 }
 

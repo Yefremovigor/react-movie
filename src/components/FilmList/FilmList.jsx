@@ -1,6 +1,6 @@
+import P from '../P/P.jsx';
+import FilmCard from '../FilmCard/FilmCard.jsx';
 import styles from'./FilmList.module.css';
-import P from "../P/P.jsx";
-import FilmCard from "../FilmCard/FilmCard.jsx";
 const FilmList = ({films, handler}) => {
     if (films.length === 0) {
         return <P type="warning">Ничего не найдено</P>;
@@ -12,13 +12,13 @@ const FilmList = ({films, handler}) => {
                 <FilmCard film={film} addToFavoriteHandler={handler} />
             </li>
         );
-    })
+    });
 
     return (
         <ul className={styles['film-list']}>
             {filmsToRender}
         </ul>
     );
-}
+};
 
 export default FilmList;
