@@ -1,7 +1,7 @@
-import './Main.css';
+import styles from './Main.module.css';
 const Main = ({children}) => {
     return (
-        <main className="main">
+        <main className={styles.main}>
             {children}
         </main>
     );

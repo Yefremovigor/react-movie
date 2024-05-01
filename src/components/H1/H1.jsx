@@ -1,9 +1,9 @@
-import './H1.css';
+import styles from './H1.module.css';
 
 function H1({children}) {
 
     return (
-        <h1 className="h1">{children}</h1>
+        <h1 className={styles.h1}>{children}</h1>
     );
 }
 

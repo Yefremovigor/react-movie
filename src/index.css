@@ -58,6 +58,14 @@ body {
   font-style: normal;
 }
 
+#root {
+  margin: 0 auto;
+
+  width: 100%;
+  height: 100%;
+  max-width: 1440px;
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;

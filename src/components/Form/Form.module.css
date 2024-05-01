@@ -1,0 +1,15 @@
+.form {
+    display: flex;
+}
+
+.form--search {
+    gap: 8px;
+    margin-top: 24px;
+}
+
+.form--login {
+    flex-direction: column;
+    gap: 27px;
+    align-items: flex-start;
+    padding-top: 27px;
+}
