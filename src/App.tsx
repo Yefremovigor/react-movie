@@ -1,59 +1,44 @@
-import Button from './components/Button/Button.jsx';
-import H1 from './components/H1/H1.jsx';
-import P from './components/P/P.jsx';
-import NavBar from './layouts/NavBar/NavBar.jsx';
-import Input from './components/Input/Input.jsx';
-import Form from './components/Form/Form.jsx';
-import Main from './layouts/Main/Main.jsx';
-import HeadingBlock from './components/HeadingBlock/HeadingBlock.jsx';
-import FilmList from './components/FilmList/FilmList.jsx';
-import { useRef, useState } from 'react';
-import { UserContext } from './context/user.context.jsx';
+import React, { useRef, useState } from 'react';
+import Button from './components/Button/Button.tsx';
+import FilmList from './components/FilmList/FilmList.tsx';
+import Form from './components/Form/Form.tsx';
+import H1 from './components/H1/H1.tsx';
+import HeadingBlock from './components/HeadingBlock/HeadingBlock.tsx';
+import Input from './components/Input/Input.tsx';
+import Main from './layouts/Main/Main.tsx';
+import NavBar from './layouts/NavBar/NavBar.tsx';
+import P from './components/P/P.tsx';
+import { UserContext } from './context/user.context.tsx';
+import { useGetFilms } from './hooks/useGetFilms.hook.ts';
 import { useUserAuth } from './hooks/useUserAuth.hook';
 
-const INITIAL_FILMS_DATA = [{
-    id: 1, name: 'Black Widow', img: '/images/film-posters/black-widow.jpg', ifFavorite: false, rating: 324
-}, {
-    id: 2, name: 'Shang Chi', img: '/images/film-posters/black-widow.jpg', ifFavorite: false, rating: 124
-}, {
-    id: 3, name: 'Loki', img: '/images/film-posters/black-widow.jpg', ifFavorite: false, rating: 235
-}, {
-    id: 4, name: 'How I Met Your Mother', img: '/images/film-posters/black-widow.jpg', ifFavorite: false, rating: 123
-}, {
-    id: 5, name: 'Money Heist', img: '/images/film-posters/black-widow.jpg', ifFavorite: true, rating: 8125
-}, {
-    id: 6, name: 'Friends', img: '/images/film-posters/black-widow.jpg', ifFavorite: false, rating: 123
-}, {
-    id: 7, name: 'The Big Bang Theory', img: '/images/film-posters/black-widow.jpg', ifFavorite: false, rating: 12
-}, {
-    id: 8, name: 'Two And a Half Men', img: '/images/film-posters/black-widow.jpg', ifFavorite: false, rating: 456
-}];
+
 
 function App() {
 
-    const [films, setFilms] = useState(INITIAL_FILMS_DATA);
+    const [films, setFilms] = useState(useGetFilms);
 
-    const searchInputRef = useRef();
-    const searchButtonRef = useRef();
-    const loginInputRef = useRef();
-    const loginButtonRef = useRef();
+    const searchInputRef = useRef(null);
+    const searchButtonRef = useRef(null);
+    const loginInputRef = useRef(null);
+    const loginButtonRef = useRef(null);
 
     const { user, login, logout } = useUserAuth();
 
 
-    const addToFavorite = (id) => {
+    const addToFavorite = (id: number) => {
         setFilms(films.map(film => film.id === id ? { ...film, ifFavorite: !film.ifFavorite } : film));
     };
 
-    function logoutHandler(event) {
+    function logoutHandler(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
         event.preventDefault();
         logout();
     }
 
-    function loginHandler(event) {
+    function loginHandler(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        const formData = new FormData(event.target);
-        const userLogin = formData.get('login');
+        const formData = new FormData(event.currentTarget);
+        const userLogin = formData.get('login') as string;
 
         if (userLogin) {
             login(userLogin);
@@ -83,7 +68,7 @@ function App() {
                                 Введите название фильма, сериала или мультфильма для поиска и добавления в избранное.
                             </P>
                         </HeadingBlock>
-                        <Form type="search" className="mb-80">
+                        <Form type="search" className="mb-80" onSubmit={(event) => event.preventDefault()}>
                             <Input type="search" ref={searchInputRef} label={{ hidden: true, text: 'Поиск' }}
                                 name="query"
                                 placeholder="Введите название"

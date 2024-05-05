@@ -1,5 +1,6 @@
 import { useContext } from 'react';
-import { UserContext } from '../../context/user.context.jsx';
+import { UserContext } from '../../context/user.context.tsx';
+
 import styles from './Nav.module.css';
 
 const Nav = () => {

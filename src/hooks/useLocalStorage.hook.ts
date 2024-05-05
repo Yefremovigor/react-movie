@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
-export function useLocalStorage(key) {
-    const [data, setData] = useState();
+export function useLocalStorage<T>(key: string): [T | undefined, (newData: T) => void] {
+    const [data, setData] = useState<T | undefined>();
 
     useEffect(() => {
         const storage = localStorage.getItem(key);
@@ -10,7 +10,7 @@ export function useLocalStorage(key) {
         }
 
         try {
-            const res = JSON.parse(storage);
+            const res = JSON.parse(storage) as T;
             if (res) {
                 setData(res);
             }
@@ -19,7 +19,7 @@ export function useLocalStorage(key) {
         }
     }, []);
 
-    const saveData = (newData) => {
+    const saveData = (newData: T) => {
         localStorage.setItem(key, JSON.stringify(newData));
         setData(newData);
     };
