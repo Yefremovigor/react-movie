@@ -1,6 +1,9 @@
-import {InputProps} from './Input.props.ts';
-import cn from 'classnames';
 import { forwardRef } from 'react';
+
+import cn from 'classnames';
+
+import {InputProps} from './Input.props.ts';
+
 import styles from './Input.module.css';
 
 const Input = forwardRef<HTMLInputElement, InputProps>(({type = 'text', label, placeholder, icon, name, ...props}, ref) => {

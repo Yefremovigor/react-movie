@@ -1,4 +1,5 @@
 import {H1Props} from './H1.props.ts';
+
 import styles from './H1.module.css';
 
 function H1({children}: H1Props) {

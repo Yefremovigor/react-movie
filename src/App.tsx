@@ -1,16 +1,17 @@
 import React, { useRef, useState } from 'react';
+
 import Button from './components/Button/Button.tsx';
 import FilmList from './components/FilmList/FilmList.tsx';
 import Form from './components/Form/Form.tsx';
 import H1 from './components/H1/H1.tsx';
 import HeadingBlock from './components/HeadingBlock/HeadingBlock.tsx';
 import Input from './components/Input/Input.tsx';
-import Main from './layouts/Main/Main.tsx';
-import NavBar from './layouts/NavBar/NavBar.tsx';
 import P from './components/P/P.tsx';
 import { UserContext } from './context/user.context.tsx';
 import { useGetFilms } from './hooks/useGetFilms.hook.ts';
 import { useUserAuth } from './hooks/useUserAuth.hook';
+import Main from './layouts/Main/Main.tsx';
+import NavBar from './layouts/NavBar/NavBar.tsx';
 
 
 
@@ -30,10 +31,6 @@ function App() {
         setFilms(films.map(film => film.id === id ? { ...film, ifFavorite: !film.ifFavorite } : film));
     };
 
-    function logoutHandler(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-        event.preventDefault();
-        logout();
-    }
 
     function loginHandler(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -48,7 +45,7 @@ function App() {
 
     return (
         <>
-            <UserContext.Provider value={{ user, logoutHandler }}>
+            <UserContext.Provider value={{ user, login, logout }}>
                 <NavBar />
                 <Main>
                     {!user ? <>

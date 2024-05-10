@@ -1,6 +1,8 @@
 import FilmCard from '../FilmCard/FilmCard.tsx';
-import { FilmListProps } from './FilmList.props.ts';
 import P from '../P/P.jsx';
+
+import { FilmListProps } from './FilmList.props.ts';
+
 import styles from'./FilmList.module.css';
 const FilmList = ({films, handler} : FilmListProps) => {
     if (films.length === 0) {
