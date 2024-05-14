@@ -6,16 +6,16 @@ import {AddButtonProps} from './AddButton.props.ts';
 
 import styles from './AddButton.module.css';
 
-const AddButton = ({state, id, handler}: AddButtonProps) => {
+const AddButton = ({isAdded, id, handler}: AddButtonProps) => {
 
     const clickHandler = (event: React.MouseEvent) => {
         event.preventDefault();
         handler(id);
     };
 
-    const buttonText = state ? 'В избранном' : 'В избранное';
-    const buttonIcon = state ? '/images/icons/favorites-icon.svg' : '/images/icons/like-icon.svg';
-    const buttonClass = cn(styles['add-button'], { [styles.added]: state });
+    const buttonText = isAdded ? 'В избранном' : 'В избранное';
+    const buttonIcon = isAdded ? '/images/icons/favorites-icon.svg' : '/images/icons/like-icon.svg';
+    const buttonClass = cn(styles['add-button'], { [styles.added]: isAdded });
 
     return (
         <button className={buttonClass} onClick={clickHandler}>

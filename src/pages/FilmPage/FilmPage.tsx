@@ -38,7 +38,7 @@ const FilmPage = () => {
                         no matter what consequences may be in store.
                     </P>
                     <div className={styles['film-page__rating']}>
-                        <Rating rating={film.rating}/> <AddButton state={film.ifFavorite} id={film.id} handler={addToFavorite} />
+                        <Rating rating={film.rating}/> <AddButton isAdded={film.ifFavorite} id={film.id} handler={addToFavorite} />
                     </div>
                     <div className={styles['film-page__info']}>
                         <span className={styles['film-page__info-label']}>Тип</span>

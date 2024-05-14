@@ -7,7 +7,7 @@ import styles from './P.module.css';
 function P({children, type = 'regular', className, ...props}: PProps) {
 
     return (
-        <p className={cn(styles.p, styles[`p--${type}`], className)} {...props}>
+        <p className={cn(styles['p'], styles[type], className)} {...props}>
             {children}
         </p>
     );
