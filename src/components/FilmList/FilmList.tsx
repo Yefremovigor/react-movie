@@ -1,9 +1,12 @@
+import FilmCard from '../FilmCard/FilmCard.tsx';
 import P from '../P/P.jsx';
-import FilmCard from '../FilmCard/FilmCard.jsx';
+
+import { FilmListProps } from './FilmList.props.ts';
+
 import styles from'./FilmList.module.css';
-const FilmList = ({films, handler}) => {
+const FilmList = ({films, handler} : FilmListProps) => {
     if (films.length === 0) {
-        return <P type="warning">Ничего не найдено</P>;
+        return <P type="large">Ничего не найдено</P>;
     }
 
     const filmsToRender = films.map(film => {

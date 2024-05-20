@@ -1,6 +1,8 @@
+import {H1Props} from './H1.props.ts';
+
 import styles from './H1.module.css';
 
-function H1({children}) {
+function H1({children}: H1Props) {
 
     return (
         <h1 className={styles.h1}>{children}</h1>

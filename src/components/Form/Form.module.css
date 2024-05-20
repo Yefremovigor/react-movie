@@ -2,12 +2,12 @@
     display: flex;
 }
 
-.form--search {
+.search {
     gap: 8px;
     margin-top: 24px;
 }
 
-.form--login {
+.login {
     flex-direction: column;
     gap: 27px;
     align-items: flex-start;
