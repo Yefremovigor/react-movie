@@ -44,7 +44,7 @@ export interface Review {
     '@type': string;
     itemReviewed: ItemReviewed;
     author: Author;
-    dateCreated: Date;
+    dateCreated: string;
     inLanguage: string;
     name: string;
     reviewBody: string;

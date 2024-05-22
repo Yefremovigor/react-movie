@@ -38,8 +38,7 @@ const router = createBrowserRouter([
                 element: <FilmPage />,
                 errorElement: <ErrorPage />,
                 loader: async ({params}) => {
-                    const response = await axios.get(`${PREFIX}/?tt=${params.id}`);
-                    const data = await response.data as FilmResponse;
+                    const {data} = await axios.get<FilmResponse>(`${PREFIX}/?tt=${params.id}`);
                     const film = FilmResponseConvert(data);
                     return defer({...film});
                 }
