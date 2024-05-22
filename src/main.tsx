@@ -1,36 +1,48 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 
+import axios from 'axios';
 import ReactDOM from 'react-dom/client';
-import {createBrowserRouter, RouterProvider} from 'react-router-dom';
+import { createBrowserRouter, defer, RouterProvider } from 'react-router-dom';
 
-import './index.css';
+import { FilmResponse, FilmResponseConvert, PREFIX } from './helpers/API.ts';
 import App from './layouts/App/App.tsx';
-import FavouritesPage from './pages/FavouritesPage/FavouritesPage.tsx';
+import ErrorPage from './pages/ErrorPage/ErrorPage.tsx';
 import FilmPage from './pages/FilmPage/FilmPage.tsx';
-import LoginPage from './pages/LoginPage/LoginPage.tsx';
-import SearchPage from './pages/SearchPage/SearchPage.tsx';
+import './index.css';
+
+
+const SearchPage = lazy(() => import('./pages/SearchPage/SearchPage.tsx'));
+const LoginPage = lazy(() => import('./pages/LoginPage/LoginPage.tsx'));
+const FavouritesPage = lazy(() => import('./pages/FavouritesPage/FavouritesPage.tsx'));
 
 const router = createBrowserRouter([
 
     {
         path: '/',
-        element: <App/>,
+        element: <App />,
         children: [
             {
                 path: '/',
-                element: <SearchPage/>
+                element: <Suspense fallback={'loading'}><SearchPage /></Suspense>
             },
             {
                 path: '/login',
-                element: <LoginPage/>
+                element: <Suspense fallback={'loading'}><LoginPage /></Suspense>
             },
             {
                 path: '/favourites',
-                element: <FavouritesPage/>
+                element: <Suspense fallback={'loading'}><FavouritesPage /></Suspense>
             },
             {
                 path: 'film/:id',
-                element: <FilmPage/>
+                element: <FilmPage />,
+                errorElement: <ErrorPage />,
+                loader: async ({params}) => {
+                    const response = await axios.get(`${PREFIX}/?tt=${params.id}`);
+                    const data = await response.data as FilmResponse;
+                    const film = FilmResponseConvert(data);
+                    return defer({...film});
+                }
             }
         ]
     }

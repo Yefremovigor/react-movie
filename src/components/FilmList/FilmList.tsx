@@ -1,25 +1,25 @@
+import {useContext} from 'react';
+
+import {UserContext} from '../../context/user.context.tsx';
 import FilmCard from '../FilmCard/FilmCard.tsx';
-import P from '../P/P.jsx';
 
 import { FilmListProps } from './FilmList.props.ts';
 
 import styles from'./FilmList.module.css';
-const FilmList = ({films, handler} : FilmListProps) => {
-    if (films.length === 0) {
-        return <P type="large">Ничего не найдено</P>;
-    }
+const FilmList = ({films} : FilmListProps) => {
 
-    const filmsToRender = films.map(film => {
-        return(
-            <li className={styles['film-list__item']} key={film.id}>
-                <FilmCard film={film} addToFavoriteHandler={handler} />
-            </li>
-        );
-    });
+    const {setFilms} = useContext(UserContext);
+    const addToFavorite = (id: string) => {
+        setFilms(films.map(film => film.id === id ? { ...film, ifFavorite: !film.ifFavorite } : film));
+    };
 
     return (
         <ul className={styles['film-list']}>
-            {filmsToRender}
+            {films.map(film => (
+                <li className={styles['film-list__item']} key={film.id}>
+                    <FilmCard film={film} addToFavoriteHandler={addToFavorite} />
+                </li>
+            ))}
         </ul>
     );
 };

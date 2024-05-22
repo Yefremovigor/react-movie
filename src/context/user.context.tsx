@@ -1,14 +1,14 @@
 import React, { createContext } from 'react';
 
-import {Films} from '../hooks/useGetFilms.hook.ts';
 import { User } from '../hooks/useUserAuth.hook';
+import {Film} from '../interface/FilmInterface.ts';
 
 interface UserContextType {
     user: User | null;
     login: (userLogin: string) => void;
     logout: () => void;
-    films: Films;
-    setFilms: (newValue: Films | ((prevState: Films) => Films)) => void;
+    films: Film[];
+    setFilms: (newValue: Film[] | ((prevState: Film[]) => Film[])) => void;
 }
 
 export const UserContext: React.Context<UserContextType> = createContext<UserContextType>({
@@ -16,5 +16,5 @@ export const UserContext: React.Context<UserContextType> = createContext<UserCon
     login: (userLogin: string) => {userLogin.length;},
     logout: () => {},
     films: [],
-    setFilms(newValue: Films | ((prevState: Films) => Films)): void {newValue.length;}
+    setFilms(newValue: Film[] | ((prevState: Film[]) => Film[])): void {newValue.length;}
 });
