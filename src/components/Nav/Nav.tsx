@@ -28,7 +28,7 @@ const Nav = () => {
                     <li>
                         <NavLink to="/favourites" className={({isActive}) => cn(styles.nav__link, {[styles.active]: isActive})}>
                             Мои фильмы
-                            {favoriteFilmsCounter > 0 && <span className={styles.nav__counter}>{favoriteFilmsCounter}</span>}
+                            {favoriteFilmsCounter > 0 && user && <span className={styles.nav__counter}>{favoriteFilmsCounter}</span>}
                         </NavLink>
                     </li>
                     {user ? (

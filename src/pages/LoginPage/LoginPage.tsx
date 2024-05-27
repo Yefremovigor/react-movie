@@ -1,5 +1,7 @@
 import React, {useContext, useRef} from 'react';
 
+import { Navigate } from 'react-router-dom';
+
 import Button from '../../components/Button/Button.tsx';
 import Form from '../../components/Form/Form.tsx';
 import H1 from '../../components/H1/H1.tsx';
@@ -10,7 +12,7 @@ import {UserContext} from '../../context/user.context.tsx';
 
 
 const LoginPage = () => {
-    const {login} = useContext(UserContext);
+    const {user, login} = useContext(UserContext);
 
     const loginInputRef = useRef(null);
     const loginButtonRef = useRef(null);
@@ -20,9 +22,12 @@ const LoginPage = () => {
         const userLogin = formData.get('login') as string;
 
         if (userLogin) {
-
             login(userLogin);
         }
+    }
+
+    if (user) {
+        return <Navigate to="/" replace />;
     }
 
     return (
