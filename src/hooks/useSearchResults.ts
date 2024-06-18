@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 
-import axios, {AxiosError} from 'axios';
+import axios, { AxiosError } from 'axios';
 
-import { PREFIX, SearchResponse, SearchResponseConvert } from '../helpers/API';
-import { Film } from '../interface/FilmInterface';
+import { PREFIX, ISearchResponse, SearchResponseConverter } from '@/helpers';
+import { IFilm } from '@/interface';
 
-export const useSearchResults = (query: string): [Film[], boolean, string | null] => {
-    const [films, setFilms] = useState<Film[]>([]);
+export const useSearchResults = (query: string): [IFilm[], boolean, string | null] => {
+    const [films, setFilms] = useState<IFilm[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
 
@@ -15,8 +15,8 @@ export const useSearchResults = (query: string): [Film[], boolean, string | null
             setLoading(true);
             setError(null);
             try {
-                const { data } = await axios.get<SearchResponse>(`${PREFIX}?q=${query}`);
-                const films = SearchResponseConvert(data);
+                const {data} = await axios.get<ISearchResponse>(`${PREFIX}?q=${query}`);
+                const films = SearchResponseConverter(data);
                 setFilms(films);
             } catch (error) {
                 if (error instanceof AxiosError) {
@@ -28,8 +28,8 @@ export const useSearchResults = (query: string): [Film[], boolean, string | null
         };
 
         fetchSearchResults();
-        
+
     }, [query]);
 
-    return [ films, loading, error ];
+    return [films, loading, error];
 };

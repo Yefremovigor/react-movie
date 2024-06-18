@@ -1,9 +1,8 @@
 import React from 'react';
 
-import {Film} from '../../interface/FilmInterface.ts';
-
+import { IFilm } from '../../interface/IFilm.ts';
 
 
 export interface FilmListProps extends React.HTMLAttributes<HTMLUListElement> {
-    films: Film[],
+    films: IFilm[],
 }

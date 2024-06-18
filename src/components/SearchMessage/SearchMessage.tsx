@@ -1,8 +1,8 @@
-
-import {SearchMessageProps} from './SearchMessage.props.ts';
+import { SearchMessageProps } from './';
 
 import styles from './SearchMessage.module.css';
-const SearchMessage = ({title = '', text= ''}: SearchMessageProps) => {
+
+const SearchMessage = ({title = '', text = ''}: SearchMessageProps) => {
 
     return (
         <div className={styles['search-message']}>

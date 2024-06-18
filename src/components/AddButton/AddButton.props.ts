@@ -1,5 +1,4 @@
-
-export interface AddButtonProps  {
+export interface AddButtonProps {
     isAdded: boolean;
     id: string;
     handler: (id: string) => void;

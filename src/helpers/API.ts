@@ -1,9 +1,8 @@
-import { FilmDataInterface } from '../interface/FilmDataInterface.ts';
-import { Film } from '../interface/FilmInterface.ts';
+import { IFilm, IFilmData } from '@/interface';
 
 export const PREFIX = 'https://search.imdbot.workers.dev/';
 
-export interface SearchResponseItem {
+export interface ISearchResponseItem {
     '#TITLE': string;
     '#YEAR': number;
     '#IMDB_ID': string;
@@ -17,12 +16,12 @@ export interface SearchResponseItem {
     photo_height: number;
 }
 
-export interface SearchResponse {
+export interface ISearchResponse {
     ok: boolean;
-    description: SearchResponseItem[];
+    description: ISearchResponseItem[];
 }
 
-export interface Rating {
+export interface IRating {
     '@type': string;
     ratingCount?: number;
     bestRating: number;
@@ -30,28 +29,28 @@ export interface Rating {
     ratingValue: number;
 }
 
-export interface Author {
+export interface IAuthor {
     '@type': string;
     name: string;
 }
 
-export interface ItemReviewed {
+export interface IReviewedItem {
     '@type': string;
     url: string;
 }
 
-export interface Review {
+export interface IReview {
     '@type': string;
-    itemReviewed: ItemReviewed;
-    author: Author;
+    itemReviewed: IReviewedItem;
+    author: IAuthor;
     dateCreated: string;
     inLanguage: string;
     name: string;
     reviewBody: string;
-    reviewRating: Rating;
+    reviewRating: IRating;
 }
 
-export interface Short {
+export interface IShort {
     imdbId: string,
     '@context': string;
     '@type': string;
@@ -59,8 +58,8 @@ export interface Short {
     name: string;
     image: string;
     description: string;
-    review: Review;
-    aggregateRating: Rating;
+    review: IReview;
+    aggregateRating: IRating;
     contentRating: string;
     genre: string[];
     datePublished: string;
@@ -68,11 +67,11 @@ export interface Short {
     duration: string;
 }
 
-export interface FilmResponse {
-    short: Short;
+export interface IFilmResponse {
+    short: IShort;
 }
 
-export const SearchResponseConvert = (data: SearchResponse): Film[] => {
+export const SearchResponseConverter = (data: ISearchResponse): IFilm[] => {
     if (!data.description) {
         return [];
     }
@@ -84,11 +83,11 @@ export const SearchResponseConvert = (data: SearchResponse): Film[] => {
             img: item['#IMG_POSTER'],
             ifFavorite: false,
             rating: item['#RANK']
-        } as Film;
+        } as IFilm;
     });
 };
 
-export const FilmResponseConvert = (data: FilmResponse): FilmDataInterface => {
+export const FilmResponseConverter = (data: IFilmResponse): IFilmData => {
     return {
         id: data.short.imdbId,
         name: data.short.name,

@@ -1,19 +1,16 @@
 import { lazy, Suspense } from 'react';
 
+import { Layout } from '@layouts/Layout';
+import { ErrorPage } from '@pages/ErrorPage';
+import { FilmPage } from '@pages/FilmPage';
 import axios from 'axios';
 import { createBrowserRouter, defer, RouterProvider } from 'react-router-dom';
 
-import { FilmResponse, FilmResponseConvert, PREFIX } from '../helpers/API.ts';
-import RequireAuth from '../helpers/RequireAuth.tsx';
-import Layout from '../layouts/Layout/Layout.tsx';
-import ErrorPage from '../pages/ErrorPage/ErrorPage.tsx';
-import FilmPage from '../pages/FilmPage/FilmPage.tsx';
-
+import { FilmResponseConverter, IFilmResponse, PREFIX, RequireAuth } from '@/helpers';
 
 const SearchPage = lazy(() => import('../pages/SearchPage/SearchPage.tsx'));
 const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage.tsx'));
 const FavouritesPage = lazy(() => import('../pages/FavouritesPage/FavouritesPage.tsx'));
-
 
 const MainRouter = () => {
     const router = createBrowserRouter([
@@ -34,8 +31,8 @@ const MainRouter = () => {
                     element: <FilmPage />,
                     errorElement: <ErrorPage />,
                     loader: async ({params}) => {
-                        const {data} = await axios.get<FilmResponse>(`${PREFIX}/?tt=${params.id}`);
-                        const film = FilmResponseConvert(data);
+                        const {data} = await axios.get<IFilmResponse>(`${PREFIX}/?tt=${params.id}`);
+                        const film = FilmResponseConverter(data);
                         return defer({...film});
                     }
                 }

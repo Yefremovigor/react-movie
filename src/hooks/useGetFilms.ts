@@ -1,7 +1,7 @@
-import {Film} from '../interface/FilmInterface.ts';
+import {IFilm} from '@/interface/';
 
 
-const INITIAL_FILMS_DATA: Film[] = [{
+const INITIAL_FILMS_DATA: IFilm[] = [{
     id: '1', name: 'Black Widow', img: '/images/film-posters/black-widow.jpg', ifFavorite: false, rating: 324
 }, {
     id: '2', name: 'Shang Chi', img: '/images/film-posters/black-widow.jpg', ifFavorite: false, rating: 124
@@ -18,6 +18,6 @@ const INITIAL_FILMS_DATA: Film[] = [{
 }, {
     id: '8', name: 'Two And a Half Men', img: '/images/film-posters/black-widow.jpg', ifFavorite: false, rating: 456
 }];
-export function useGetFilms(): Film[] {
+export function useGetFilms(): IFilm[] {
     return INITIAL_FILMS_DATA;
 }

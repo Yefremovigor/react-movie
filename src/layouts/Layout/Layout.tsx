@@ -1,7 +1,7 @@
-import {  Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
-import Main from '../Main/Main.tsx';
-import NavBar from '../NavBar/NavBar.tsx';
+import { Main } from '../Main';
+import { NavBar } from '../NavBar';
 
 const Layout = () => {
 

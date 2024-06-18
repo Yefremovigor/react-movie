@@ -1,6 +1,6 @@
-import {FilmReviewInterface} from './FilmReviewInterface.ts';
+import {IFilmReview} from './';
 
-export interface FilmDataInterface {
+export interface IFilmData {
     id:           string;
     name:         string;
     img:          string;
@@ -11,5 +11,5 @@ export interface FilmDataInterface {
     duration:     string;
     genre:        string[];
     description:  string;
-    review:       FilmReviewInterface;
+    review:       IFilmReview;
 }

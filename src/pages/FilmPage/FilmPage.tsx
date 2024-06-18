@@ -1,17 +1,17 @@
-import {Suspense} from 'react';
+import { Suspense } from 'react';
 
-import {Await, useLoaderData} from 'react-router-dom';
+import { AddButton } from '@components/AddButton';
+import { P } from '@components/P';
+import { Rating } from '@components/Rating';
+import { Await, useLoaderData } from 'react-router-dom';
 
-import AddButton from '../../components/AddButton/AddButton.tsx';
-import P from '../../components/P/P.tsx';
-import Rating from '../../components/Rating/Rating.tsx';
-import {FilmDataInterface} from '../../interface/FilmDataInterface.ts';
+import { IFilmData } from '@/interface/';
 
 import styles from './FilmPage.module.css';
 
 const FilmPage = () => {
 
-    const filmData = useLoaderData() as FilmDataInterface;
+    const filmData = useLoaderData() as IFilmData;
 
     const addToFavorite = (id: string) => {
         console.log(id);

@@ -1,19 +1,19 @@
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-import AddButton from '../AddButton/AddButton.tsx';
-import Rating from '../Rating/Rating.tsx';
+import { AddButton } from '../AddButton';
+import { Rating } from '../Rating';
 
-import {FilmCardProps} from './FilmCard.props.ts';
+import { FilmCardProps } from './';
 
 import styles from './FilmCard.module.css';
 
-const FilmCard = ({ film, addToFavoriteHandler }: FilmCardProps) => {
+const FilmCard = ({film, addToFavoriteHandler}: FilmCardProps) => {
 
     return (
         <Link to={`film/${film.id}`} key={film.id} className={styles['film-card']}>
             <div
                 className={styles['film-card__img']}
-                style={{ backgroundImage: `url(${film.img})` }}
+                style={{backgroundImage: `url(${film.img})`}}
             ></div>
             <Rating rating={film.rating} className={styles['film-card__rating']} />
             <div className={styles['film-card__bottom']}>

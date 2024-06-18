@@ -1,15 +1,13 @@
-import {useContext } from 'react';
+import { FilmList } from '@components/FilmList';
+import { H1 } from '@components/H1';
+import { HeadingBlock } from '@components/HeadingBlock';
 
-import FilmList from '../../components/FilmList/FilmList.tsx';
-import H1 from '../../components/H1/H1.tsx';
-import HeadingBlock from '../../components/HeadingBlock/HeadingBlock.tsx';
-import {UserContext} from '../../context/user.context.tsx';
+import { useFavoriteFilms } from '@/hooks';
 
 const FavouritesPage = () => {
-    const { films} = useContext(UserContext);
-    const favoriteFilms = films.filter(film => film.ifFavorite);
+    const {favoriteFilms} = useFavoriteFilms();
 
-    
+
     return (
         <>
             <HeadingBlock>

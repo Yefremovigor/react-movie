@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Logo = (): React.ReactElement => {
-    return(
+    return (
         <img src="/images/logo.svg" alt="Логотип" />
     );
 };

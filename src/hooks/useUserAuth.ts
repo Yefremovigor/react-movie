@@ -1,16 +1,14 @@
 import {useEffect, useState} from 'react';
 
-import {useLocalStorage} from './useLocalStorage.hook.ts';
+import {useLocalStorage} from './';
 
 export interface User {
     name: string,
     isLogined: boolean
 }
 
-export interface Users extends Array<User>{}
-
 export function useUserAuth() {
-    const [users, saveUsers] = useLocalStorage<Users>('users');
+    const [users, saveUsers] = useLocalStorage<User[]>('users');
     const [user, setUser] = useState<User | null>(null);
 
     useEffect(() => {

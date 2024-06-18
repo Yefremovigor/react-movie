@@ -1,16 +1,18 @@
-import {useContext} from 'react';
+import { useContext } from 'react';
 
-import {UserContext} from '../../context/user.context.tsx';
-import FilmCard from '../FilmCard/FilmCard.tsx';
+import { FilmCard } from '../FilmCard';
 
-import { FilmListProps } from './FilmList.props.ts';
+import { FilmListProps } from './';
 
-import styles from'./FilmList.module.css';
-const FilmList = ({films} : FilmListProps) => {
+import { UserContext } from '@/context';
+
+import styles from './FilmList.module.css';
+
+const FilmList = ({films}: FilmListProps) => {
 
     const {setFilms} = useContext(UserContext);
     const addToFavorite = (id: string) => {
-        setFilms(films.map(film => film.id === id ? { ...film, ifFavorite: !film.ifFavorite } : film));
+        setFilms(films.map(film => film.id === id ? {...film, ifFavorite: !film.ifFavorite} : film));
     };
 
     return (
