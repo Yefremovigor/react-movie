@@ -2,11 +2,19 @@ import { forwardRef } from 'react';
 
 import cn from 'classnames';
 
-import {InputProps} from './Input.props.ts';
+import { InputProps } from './';
 
 import styles from './Input.module.css';
 
-const Input = forwardRef<HTMLInputElement, InputProps>(({type = 'text', label, placeholder, icon, name, ...props}, ref) => {
+const Input = forwardRef<HTMLInputElement, InputProps>((
+    {
+        type = 'text',
+        label,
+        placeholder,
+        icon,
+        name,
+        ...props
+    }, ref) => {
 
     const inputClass = cn(styles['input'], {
         [styles[`input--${type}`]]: Boolean(styles[`input--${type}`])

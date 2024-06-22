@@ -1,4 +1,4 @@
-import {H1Props} from './H1.props.ts';
+import { H1Props } from './';
 
 import styles from './H1.module.css';
 

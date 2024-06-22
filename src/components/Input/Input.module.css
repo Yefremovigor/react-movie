@@ -11,15 +11,22 @@
     border: 1px solid var(--Grey-700);
     background: var(--Black-10);
 
-    color: var(--White-100);
+    color: #C2C8D7;
+
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+
 }
 
 .input::placeholder {
     font-family: "Poppins", sans-serif;
-    font-size: 14px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 400;
-    line-height: 16px;
+    line-height: 1;
     color: var(--Grey-600);
 }
 

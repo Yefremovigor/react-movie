@@ -1,0 +1,127 @@
+{
+"_type": "export",
+"__export_format": 4,
+"__export_date": "2023-09-25T07:25:37.424Z",
+"__export_source": "insomnia.desktop.app:v2023.2.2",
+"resources": [
+{
+"_id": "req_5950dbf0f8fd4fb09dfa0e1807bc88d4",
+"parentId": "wrk_7c29569fe84644908300b70f0d13b009",
+"modified": 1693405726180,
+"created": 1693403307843,
+"url": "https://search.imdbot.workers.dev/?tt=tt4154796",
+"name": "GetDetails",
+"description": "",
+"method": "GET",
+"body": {},
+"parameters": [],
+"headers": [],
+"authentication": {},
+"metaSortKey": -1693403307843,
+"isPrivate": false,
+"settingStoreCookies": true,
+"settingSendCookies": true,
+"settingDisableRenderRequestBody": false,
+"settingEncodeUrl": true,
+"settingRebuildPath": true,
+"settingFollowRedirects": "global",
+"_type": "request"
+},
+{
+"_id": "wrk_7c29569fe84644908300b70f0d13b009",
+"parentId": null,
+"modified": 1693403277634,
+"created": 1693403277634,
+"name": "React-3",
+"description": "",
+"scope": "design",
+"_type": "workspace"
+},
+{
+"_id": "req_7a510c2a098a4051b651b2713452906a",
+"parentId": "wrk_7c29569fe84644908300b70f0d13b009",
+"modified": 1693405721155,
+"created": 1693403281623,
+"url": "https://search.imdbot.workers.dev/?q=Avengers: Endgame",
+"name": "Search",
+"description": "",
+"method": "GET",
+"body": {},
+"parameters": [],
+"headers": [],
+"authentication": {},
+"metaSortKey": -1693403281623,
+"isPrivate": false,
+"settingStoreCookies": true,
+"settingSendCookies": true,
+"settingDisableRenderRequestBody": false,
+"settingEncodeUrl": true,
+"settingRebuildPath": true,
+"settingFollowRedirects": "global",
+"_type": "request"
+},
+{
+"_id": "env_4aa460b596e4e685366f72ab6520dfa4e4938d2f",
+"parentId": "wrk_7c29569fe84644908300b70f0d13b009",
+"modified": 1693403277637,
+"created": 1693403277637,
+"name": "Base Environment",
+"data": {},
+"dataPropertyOrder": null,
+"color": null,
+"isPrivate": false,
+"metaSortKey": 1693403277637,
+"_type": "environment"
+},
+{
+"_id": "jar_4aa460b596e4e685366f72ab6520dfa4e4938d2f",
+"parentId": "wrk_7c29569fe84644908300b70f0d13b009",
+"modified": 1693403345278,
+"created": 1693403277638,
+"name": "Default Jar",
+"cookies": [
+{
+"key": "_gh_sess",
+"value": "2CFNIlb2r%2FBgtBWE4H0tvlJpfMPmKIC2NMy7hVwoEqXlEeo39QpNF%2Bg%2FINFhQaO1ev0Nfsw%2FrGsjjuPPzCfVZ87BK%2F50TCTeY4tG7AiStR8V7ByzWX1Waqja2eGrjZg%2B%2Bl422y08wm0XqOH0P%2Fs%2BQVtDYRh%2FTjO6%2B63MNrCI2VkSrEnSYbNnus6tZ3VsguqsW2gK7gb%2BM6y8UPY8hUbcu70FOhd08Lebrt0%2BkJamCe%2BSKx%2BHFAlGqOnZL%2BLRKLI5ms3MBkobpx7vKwntSgHAeg%3D%3D--S2aAKJaIlL%2FnI6Ub--qaMK0SRIKUzD56h5ZfBL5g%3D%3D",
+"domain": "media.imdbot.workers.dev",
+"path": "/",
+"secure": true,
+"httpOnly": true,
+"extensions": [
+"SameSite=Lax"
+],
+"hostOnly": true,
+"creation": "2023-08-30T13:48:40.297Z",
+"lastAccessed": "2023-08-30T13:48:57.175Z",
+"id": "3351196584672418"
+},
+{
+"key": "_gh_sess",
+"value": "aSaLHxyxV2LWM2jj8YaA%2FR2SlZadGJM6Szne5cW2H4qrGPBV2lXB2Wg8qB1FoTe5Ts%2BmRmQjLLSd8%2BUGKmVevKYdpWd729elyi%2BcRVH8wy2Eww3lnCTZjcxhJuPeWdnmMVLwFBF2yXdtWBJnLcqLFUUzSjKdSh6MP%2BCj1HMuDZ6UOvVC%2F%2BJBouJcSVfNXIPYyyMGoWPg8sbTKyrGLAunmOKnT%2Fu2snjb8wdzrvU5kFx3Wn06kwbOMnkz0SILKFu7jARgU687jAjCsflfEL5SKQ%3D%3D--j0msqO%2FUMIHkXLHZ--PM%2BsVbP9BiahqRYRat76mw%3D%3D",
+"domain": "photo.imdbot.workers.dev",
+"path": "/",
+"secure": true,
+"httpOnly": true,
+"extensions": [
+"SameSite=Lax"
+],
+"hostOnly": true,
+"creation": "2023-08-30T13:49:05.278Z",
+"lastAccessed": "2023-08-30T13:49:05.278Z",
+"id": "42095899602145304"
+}
+],
+"_type": "cookie_jar"
+},
+{
+"_id": "spc_51a225d2557b407f9d5dbdccc3c4011b",
+"parentId": "wrk_7c29569fe84644908300b70f0d13b009",
+"modified": 1693403277634,
+"created": 1693403277634,
+"fileName": "React-3",
+"contents": "",
+"contentType": "yaml",
+"_type": "api_spec"
+}
+]
+}

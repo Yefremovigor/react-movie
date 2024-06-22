@@ -1,4 +1,4 @@
-import {MainProps} from './Main.props.ts';
+import { MainProps } from './';
 
 import styles from './Main.module.css';
 

@@ -17,7 +17,7 @@ export function useLocalStorage<T>(key: string): [T | undefined, (newData: T) =>
         } catch (error) {
             console.error(error);
         }
-    }, []);
+    }, [key]);
 
     const saveData = (newData: T) => {
         localStorage.setItem(key, JSON.stringify(newData));

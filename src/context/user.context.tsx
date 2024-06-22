@@ -1,20 +1,20 @@
 import React, { createContext } from 'react';
 
-import {Films} from '../hooks/useGetFilms.hook.ts';
-import { User } from '../hooks/useUserAuth.hook';
+import { User } from '@/hooks';
+import {IFilm} from '@/interface';
 
-interface UserContextType {
+interface IUserContext {
     user: User | null;
     login: (userLogin: string) => void;
     logout: () => void;
-    films: Films;
-    setFilms: (newValue: Films | ((prevState: Films) => Films)) => void;
+    films: IFilm[];
+    setFilms: (newValue: IFilm[] | ((prevState: IFilm[]) => IFilm[])) => void;
 }
 
-export const UserContext: React.Context<UserContextType> = createContext<UserContextType>({
+export const UserContext: React.Context<IUserContext> = createContext<IUserContext>({
     user: null,
     login: (userLogin: string) => {userLogin.length;},
     logout: () => {},
     films: [],
-    setFilms(newValue: Films | ((prevState: Films) => Films)): void {newValue.length;}
+    setFilms(newValue: IFilm[] | ((prevState: IFilm[]) => IFilm[])): void {newValue.length;}
 });

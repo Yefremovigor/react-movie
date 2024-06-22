@@ -7,6 +7,7 @@
 
     padding: 8px 8px 16px 8px;
     width: 282px;
+    height: 100%;
 
     border-radius: 12px;
     background: var(--Card-background);
@@ -16,8 +17,10 @@
 }
 
 .film-card__img {
-    width: 100%;
+    width: 266px;
+    height: 400px;
     border-radius: 10px;
+    background: var(--Black-10) center / contain no-repeat;
 }
 
 .film-card__rating {
@@ -28,13 +31,17 @@
 
 .film-card__bottom {
     display: flex;
-    padding: 8px;
     flex-direction: column;
     align-items: flex-start;
     gap: 16px;
+    flex-grow: 1;
+
+    padding: 8px;
+
 }
 
 .film-card__name {
+
     color: var(--Grey-50);
     font-size: 16px;
     font-style: normal;
@@ -44,5 +51,5 @@
 }
 
 .film-card__add-button {
-
+    margin-top: auto;
 }

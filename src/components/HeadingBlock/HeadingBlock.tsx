@@ -1,4 +1,4 @@
-import {HeadingBlockProps} from './HeadingBlock.props.ts';
+import { HeadingBlockProps } from './';
 
 import styles from './HeadingBlock.module.css';
 

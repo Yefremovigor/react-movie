@@ -1,9 +1,10 @@
 import cn from 'classnames';
 
-import { FormProps } from './Form.props.ts';
+import { FormProps } from './';
 
 import styles from './Form.module.css';
-const Form = ({ children, onSubmit, type, className, ...props}: FormProps) => {
+
+const Form = ({children, onSubmit, type, className, ...props}: FormProps) => {
     const formClass = cn(styles.form, {
         [styles[type]]: !!type,
         className
