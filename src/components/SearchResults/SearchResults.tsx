@@ -1,21 +1,33 @@
+import { useEffect } from 'react';
+
+import { useDispatch, useSelector } from 'react-redux';
+
 import { FilmList } from '../FilmList';
 import { SearchMessage } from '../SearchMessage';
 
 import { SearchResultsProps } from './';
 
-import { useSearchResults } from '@/hooks';
+import { IFilm } from '@/interface';
+import { AppDispatch, RootState, searchFilms } from '@/store';
+import { selectFilmsWithFavoriteStatus } from '@/store/selectors.ts';
 
 
 const SearchResults = ({query}: SearchResultsProps) => {
-    const [films, loading, error] = useSearchResults(query);
+    const dispatch = useDispatch<AppDispatch>();
+    const {isLoading, isError} = useSelector((state: RootState) => state.films);
+    const films: IFilm[] = useSelector(selectFilmsWithFavoriteStatus);
+
+    useEffect(() => {
+        dispatch(searchFilms(query));
+    }, [query, dispatch]);
 
     return (
         <>
-            {loading && <SearchMessage title={'Загрузка...'} />}
-            {error && <SearchMessage title={'Возникла ошибка'} text={error} />}
-            {!loading && !error && !films.length && <SearchMessage title={'Упс... Ничего не найдено'}
+            {isLoading && <SearchMessage title={'Загрузка...'} />}
+            {isError && <SearchMessage title={'Возникла ошибка'} text={isError} />}
+            {!isLoading && !isError && !films.length && <SearchMessage title={'Упс... Ничего не найдено'}
                 text={'Попробуйте изменить запрос или ввести более точное название фильма'} />}
-            {!loading && films && <FilmList films={films} />}
+            {!isLoading && films && <FilmList films={films} />}
         </>
     );
 };

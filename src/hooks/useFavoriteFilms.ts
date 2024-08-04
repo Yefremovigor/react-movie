@@ -4,7 +4,7 @@ import { UserContext } from '@/context';
 
 export const useFavoriteFilms = () => {
     const {films} = useContext(UserContext);
-    const favoriteFilms = films.filter(film => film.ifFavorite);
+    const favoriteFilms = films.filter(film => film.isFavorite);
 
     return {favoriteFilms};
 };

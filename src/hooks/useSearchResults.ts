@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 
 import axios, { AxiosError } from 'axios';
+import { useSelector } from 'react-redux';
 
 import { PREFIX, ISearchResponse, SearchResponseConverter } from '@/helpers';
 import { IFilm } from '@/interface';
+import { RootState } from '@/store';
 
 export const useSearchResults = (query: string): [IFilm[], boolean, string | null] => {
     const [films, setFilms] = useState<IFilm[]>([]);

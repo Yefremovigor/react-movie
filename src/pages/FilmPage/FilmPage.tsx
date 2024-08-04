@@ -3,9 +3,11 @@ import { Suspense } from 'react';
 import { AddButton } from '@components/AddButton';
 import { P } from '@components/P';
 import { Rating } from '@components/Rating';
+import { useDispatch } from 'react-redux';
 import { Await, useLoaderData } from 'react-router-dom';
 
 import { IFilmData } from '@/interface/';
+import { AppDispatch, usersActions } from '@/store';
 
 import styles from './FilmPage.module.css';
 
@@ -13,8 +15,10 @@ const FilmPage = () => {
 
     const filmData = useLoaderData() as IFilmData;
 
-    const addToFavorite = (id: string) => {
-        console.log(id);
+    const dispatch = useDispatch<AppDispatch>();
+
+    const addToFavoriteHandler = (id: string) => {
+        dispatch(usersActions.toggleFavorite(id));
     };
 
 
@@ -36,9 +40,9 @@ const FilmPage = () => {
                                 {filmData.description}
                             </P>
                             <div className={styles['film-page__rating']}>
-                                <Rating rating={filmData.rating} /> <AddButton isAdded={filmData.ifFavorite}
+                                <Rating rating={filmData.rating} /> <AddButton isAdded={filmData.isFavorite}
                                     id={filmData.id}
-                                    handler={addToFavorite} />
+                                    handler={addToFavoriteHandler} />
                             </div>
                             <div className={styles['film-page__info']}>
                                 <span className={styles['film-page__info-label']}>Тип</span>

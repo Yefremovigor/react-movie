@@ -6,7 +6,7 @@ import { useFavoriteFilms } from '@/hooks';
 
 const FavouritesPage = () => {
     const {favoriteFilms} = useFavoriteFilms();
-
+    console.log(favoriteFilms);
 
     return (
         <>

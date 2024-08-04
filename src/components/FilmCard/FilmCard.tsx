@@ -19,7 +19,7 @@ const FilmCard = ({film, addToFavoriteHandler}: FilmCardProps) => {
             <div className={styles['film-card__bottom']}>
                 <span className={styles['film-card__name']}>{film.name}</span>
                 <AddButton
-                    isAdded={film.ifFavorite}
+                    isAdded={film.isFavorite}
                     id={film.id}
                     handler={addToFavoriteHandler}
                     className={styles['film-card__add-button']}
