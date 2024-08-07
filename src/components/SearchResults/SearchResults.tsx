@@ -7,15 +7,12 @@ import { SearchMessage } from '../SearchMessage';
 
 import { SearchResultsProps } from './';
 
-import { IFilm } from '@/interface';
 import { AppDispatch, RootState, searchFilms } from '@/store';
-import { selectFilmsWithFavoriteStatus } from '@/store/selectors.ts';
 
 
 const SearchResults = ({query}: SearchResultsProps) => {
     const dispatch = useDispatch<AppDispatch>();
-    const {isLoading, isError} = useSelector((state: RootState) => state.films);
-    const films: IFilm[] = useSelector(selectFilmsWithFavoriteStatus);
+    const {films, isLoading, isError} = useSelector((state: RootState) => state.films);
 
     useEffect(() => {
         dispatch(searchFilms(query));

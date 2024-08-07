@@ -7,7 +7,7 @@ import { FilmCardProps } from './';
 
 import styles from './FilmCard.module.css';
 
-const FilmCard = ({film, addToFavoriteHandler}: FilmCardProps) => {
+const FilmCard = ({film}: FilmCardProps) => {
 
     return (
         <Link to={`film/${film.id}`} key={film.id} className={styles['film-card']}>
@@ -19,9 +19,7 @@ const FilmCard = ({film, addToFavoriteHandler}: FilmCardProps) => {
             <div className={styles['film-card__bottom']}>
                 <span className={styles['film-card__name']}>{film.name}</span>
                 <AddButton
-                    isAdded={film.isFavorite}
-                    id={film.id}
-                    handler={addToFavoriteHandler}
+                    film={film}
                     className={styles['film-card__add-button']}
                 />
             </div>

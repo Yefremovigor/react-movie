@@ -4,3 +4,4 @@ export { useLocalStorage } from './useLocalStorage';
 export { useSearchResults } from './useSearchResults';
 export { useUserLogin } from './useUserLogin';
 export { useFavoriteFilms } from './useFavoriteFilms';
+export { useGetFilmsByIds } from './useGetFilmsByIds';

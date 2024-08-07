@@ -48,8 +48,8 @@ const usersSlice = createSlice({
                 return;
             }
 
-            if (state.currentUser.favoriteFilms.includes(action.payload)) {
-                state.currentUser.favoriteFilms = state.currentUser.favoriteFilms.filter(id => id !== action.payload);
+            if (state.currentUser.favoriteFilms.filter(film => film.id === action.payload.id)[0]) {
+                state.currentUser.favoriteFilms = state.currentUser.favoriteFilms.filter(film => film.id !== action.payload.id);
             } else {
                 state.currentUser.favoriteFilms.push(action.payload);
             }

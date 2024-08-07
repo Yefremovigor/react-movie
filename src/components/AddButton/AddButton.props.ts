@@ -1,6 +1,6 @@
+import { IFilm } from '@/interface';
+
 export interface AddButtonProps {
-    isAdded: boolean;
-    id: string;
-    handler: (id: string) => void;
+    film: IFilm
     className?: string;
 }
