@@ -1,5 +1,3 @@
-import React from 'react';
-
 import cn from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
@@ -11,7 +9,6 @@ import styles from './Nav.module.css';
 const Nav = () => {
     const dispatch = useDispatch<AppDispatch>();
     const user = useSelector((s: RootState) => s.users.currentUser);
-
 
     function logoutHandler(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
         event.preventDefault();

@@ -1,4 +1,4 @@
-import React, { Suspense, useRef, useState } from 'react';
+import { Suspense, useRef, useState } from 'react';
 
 import { Button } from '@components/Button';
 import { Form } from '@components/Form';

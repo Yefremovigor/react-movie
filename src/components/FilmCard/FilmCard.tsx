@@ -10,7 +10,7 @@ import styles from './FilmCard.module.css';
 const FilmCard = ({film}: FilmCardProps) => {
 
     return (
-        <Link to={`film/${film.id}`} key={film.id} className={styles['film-card']}>
+        <Link to={`/film/${film.id}`} key={film.id} className={styles['film-card']}>
             <div
                 className={styles['film-card__img']}
                 style={{backgroundImage: `url(${film.img})`}}

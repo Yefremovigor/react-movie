@@ -1,6 +1,3 @@
-
-
-
 import { FilmCard } from '../FilmCard';
 
 import { FilmListProps } from './';
