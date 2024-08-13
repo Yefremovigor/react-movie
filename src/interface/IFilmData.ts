@@ -5,7 +5,7 @@ export interface IFilmData {
     name:         string;
     img:          string;
     rating:       number;
-    ifFavorite:   boolean;
+    isFavorite:   boolean;
     type:         string;
     premiereDate: string;
     duration:     string;

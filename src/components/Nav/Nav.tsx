@@ -1,20 +1,18 @@
-import React, { useContext } from 'react';
-
 import cn from 'classnames';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
-import { UserContext } from '@/context';
+import { AppDispatch, RootState, usersActions } from '@/store';
 
 import styles from './Nav.module.css';
 
 const Nav = () => {
-    const {user, logout, films} = useContext(UserContext);
-
-    const favoriteFilmsCounter = films.filter(film => film.ifFavorite).length;
+    const dispatch = useDispatch<AppDispatch>();
+    const user = useSelector((s: RootState) => s.users.currentUser);
 
     function logoutHandler(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
         event.preventDefault();
-        logout();
+        dispatch(usersActions.logout());
     }
 
     return (
@@ -30,8 +28,9 @@ const Nav = () => {
                         <NavLink to="/favourites"
                             className={({isActive}) => cn(styles.nav__link, {[styles.active]: isActive})}>
                             Мои фильмы
-                            {favoriteFilmsCounter > 0 && user &&
-                                <span className={styles.nav__counter}>{favoriteFilmsCounter}</span>}
+                            {user && user.favoriteFilms.length > 0 &&
+                                <span className={styles.nav__counter}>{user.favoriteFilms.length}</span>
+                            }
                         </NavLink>
                     </li>
                     {user ? (

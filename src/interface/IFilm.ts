@@ -2,6 +2,6 @@ export interface IFilm {
     id: string,
     name: string,
     img: string,
-    ifFavorite: boolean,
+    isFavorite: boolean,
     rating: number
 }

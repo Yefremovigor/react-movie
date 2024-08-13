@@ -1,21 +1,26 @@
-import React from 'react';
+import { MouseEvent } from 'react';
 
 import cn from 'classnames';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { AddButtonProps } from './';
 
+import { AppDispatch, RootState, usersActions } from '@/store';
+
 import styles from './AddButton.module.css';
 
-const AddButton = ({isAdded, id, handler, className}: AddButtonProps) => {
+const AddButton = ({film, className}: AddButtonProps) => {
+    const dispatch = useDispatch<AppDispatch>();
+    const isFavorite = !!useSelector((s: RootState) => s.users.currentUser?.favoriteFilms.find(f => f.id === film.id));
 
-    const clickHandler = (event: React.MouseEvent) => {
+    const clickHandler = (event: MouseEvent) => {
         event.preventDefault();
-        handler(id);
+        dispatch(usersActions.toggleFavorite(film));
     };
 
-    const buttonText = isAdded ? 'В избранном' : 'В избранное';
-    const buttonIcon = isAdded ? '/images/icons/favorites-icon.svg' : '/images/icons/like-icon.svg';
-    const buttonClass = cn(styles['add-button'], {[styles.added]: isAdded}, className);
+    const buttonText = isFavorite ? 'В избранном' : 'В избранное';
+    const buttonIcon = isFavorite ? '/images/icons/favorites-icon.svg' : '/images/icons/like-icon.svg';
+    const buttonClass = cn(styles['add-button'], {[styles.added]: isFavorite}, className);
 
     return (
         <button className={buttonClass} onClick={clickHandler}>

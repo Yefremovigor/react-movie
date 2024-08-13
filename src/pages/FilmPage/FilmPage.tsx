@@ -9,13 +9,21 @@ import { IFilmData } from '@/interface/';
 
 import styles from './FilmPage.module.css';
 
+const convertToMinutes = (duration: string | undefined) => {
+    if (!duration) return 0;
+
+    const hoursMatch = duration.match(/(\d+)H/);
+    const minutesMatch = duration.match(/(\d+)M/);
+
+    const hours = hoursMatch ? parseInt(hoursMatch[1], 10) : 0;
+    const minutes = minutesMatch ? parseInt(minutesMatch[1], 10) : 0;
+
+    return hours * 60 + minutes;
+};
+
 const FilmPage = () => {
 
     const filmData = useLoaderData() as IFilmData;
-
-    const addToFavorite = (id: string) => {
-        console.log(id);
-    };
 
 
     return (
@@ -36,9 +44,7 @@ const FilmPage = () => {
                                 {filmData.description}
                             </P>
                             <div className={styles['film-page__rating']}>
-                                <Rating rating={filmData.rating} /> <AddButton isAdded={filmData.ifFavorite}
-                                    id={filmData.id}
-                                    handler={addToFavorite} />
+                                <Rating rating={filmData.rating} /> <AddButton film={filmData}/>
                             </div>
                             <div className={styles['film-page__info']}>
                                 <span className={styles['film-page__info-label']}>Тип</span>
@@ -52,7 +58,7 @@ const FilmPage = () => {
                             <div className={styles['film-page__info']}>
                                 <span className={styles['film-page__info-label']}>Длительность</span>
                                 <P type="large"
-                                    className={styles['film-page__info-description']}>{filmData.duration}</P>
+                                    className={styles['film-page__info-description']}>{convertToMinutes(filmData.duration)} мин</P>
                             </div>
                             <div className={styles['film-page__info']}>
                                 <span className={styles['film-page__info-label']}>Жанр</span>

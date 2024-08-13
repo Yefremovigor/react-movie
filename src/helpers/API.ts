@@ -81,7 +81,7 @@ export const SearchResponseConverter = (data: ISearchResponse): IFilm[] => {
             id: item['#IMDB_ID'],
             name: item['#TITLE'],
             img: item['#IMG_POSTER'],
-            ifFavorite: false,
+            isFavorite: false,
             rating: item['#RANK']
         } as IFilm;
     });
@@ -93,7 +93,7 @@ export const FilmResponseConverter = (data: IFilmResponse): IFilmData => {
         name: data.short.name,
         img: data.short.image,
         rating: data.short.aggregateRating.ratingValue,
-        ifFavorite: false,
+        isFavorite: false,
         type: data.short['@type'],
         premiereDate: data.short.datePublished,
         duration: data.short.duration,

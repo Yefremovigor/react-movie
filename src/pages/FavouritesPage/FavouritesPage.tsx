@@ -1,12 +1,13 @@
 import { FilmList } from '@components/FilmList';
 import { H1 } from '@components/H1';
 import { HeadingBlock } from '@components/HeadingBlock';
+import { useSelector } from 'react-redux';
 
-import { useFavoriteFilms } from '@/hooks';
+import { RootState } from '@/store';
+
 
 const FavouritesPage = () => {
-    const {favoriteFilms} = useFavoriteFilms();
-
+    const favoriteFilms = useSelector((state: RootState) => state.users.currentUser?.favoriteFilms || []);
 
     return (
         <>
